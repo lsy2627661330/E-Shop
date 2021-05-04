@@ -5,7 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 /*
@@ -188,40 +190,25 @@ public class MainForm extends JFrame {
 
     public Object[][] queryData() {
         List<Users> list = new ArrayList<Users>();
-        Connection conn = null;
-        String url = "jdbc:mysql://localhost:3306/lsy?" + "user=root&password=111111&useSSL=false&serverTimezone=UTC";
-        Statement stmt = null;//SQL语句对象，拼SQL
-        String sql = "SELECT * FROM users";
-        //System.out.println("即将执行的sql：" + sql);
+        Util util = new Util();
+        String sql = "select * from users;";
+        PreparedStatement ps = util.getPs(sql);
         ResultSet rs = null;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");//
-            conn = DriverManager.getConnection(url);
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
-            while (rs.next()) {
+            rs = util.getRs(ps.executeQuery());
+            while (rs.next()){
                 Users user = new Users();
-                user.setId(rs.getInt("id"));
-                user.setUsername(rs.getString("username"));
-                user.setPassword(rs.getString("password"));
+                user.setId(rs.getInt(1));
+                user.setUsername(rs.getString(2));
+                user.setPassword(rs.getString(3));
                 list.add(user);
             }
-            //System.out.println(list.size());
-        } catch (ClassNotFoundException ee) {
-            ee.printStackTrace();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        } finally {
-            //释放资源：数据库连接很昂贵
-            try {
-                rs.close();
-                stmt.close();
-                conn.close();//关连接
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            util.closeAll();
         }
+
         data = new Object[list.size()][head.length];
         for (int i = 0; i < list.size(); i++) {
             for (int j = 0; j < head.length; j++) {

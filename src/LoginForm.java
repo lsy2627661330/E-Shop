@@ -4,7 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 /*
  * Created by JFormDesigner on Sun May 02 21:50:27 CST 2021
  */
@@ -63,42 +65,30 @@ public class LoginForm extends JFrame {
                     public void actionPerformed(ActionEvent e) {
                         String username = textField1.getText();
                         String password = textField2.getText();
-                        Connection conn = null;
-                        Statement stmt = null;
-                        ResultSet rs = null;
-                        String sql = "select password from users where username='"+username+"';";
-                        //String url = "jdbc:mysql://localhost:3306/lsy?useSSL=false&serverTimezone=UTC";
-                        String url = "jdbc:mysql://localhost:3306/lsy?" + "user=root&password=111111&useSSL=false&serverTimezone=UTC";
-                        try{
-                            Class.forName("com.mysql.cj.jdbc.Driver");
-                            conn = DriverManager.getConnection(url);
-                            stmt = conn.createStatement();
-                            rs = stmt.executeQuery(sql);
+                        Util util = new Util();
+                        String sql = "select password from users where username = '"+username+"';";
+                        //System.out.println(sql);
+                        PreparedStatement ps = util.getPs(sql);
+                        try {
+                            ResultSet rs = util.getRs(ps.executeQuery());
                             rs.next();
-                            String encodePassword = rs.getString(1);
-                            if(MD5.checkpassword(password,encodePassword)){
-                                System.out.println("登录成功...");
+                            String encodepassword = rs.getString(1);
+                            if  (MD5.checkpassword(password,encodepassword)){
+                                System.out.println("登陆成功...");
                                 setVisible(false);
                                 MainForm mf = new MainForm();
                                 mf.setVisible(true);
-                            }else{
+                            }else {
                                 System.out.println("登陆失败...");
                             }
-                        } catch (ClassNotFoundException | SQLException ex) {
+                        } catch (SQLException ex) {
                             ex.printStackTrace();
                         } catch (NoSuchAlgorithmException ex) {
                             ex.printStackTrace();
                         } catch (UnsupportedEncodingException ex) {
                             ex.printStackTrace();
-                        }
-                        finally {
-                            try {
-                                rs.close();
-                                stmt.close();
-                                conn.close();
-                            } catch (SQLException ex) {
-                                ex.printStackTrace();
-                            }
+                        }finally {
+                            util.closeAll();
                         }
                     }
                 }
