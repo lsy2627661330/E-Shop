@@ -1,4 +1,4 @@
-/**
+package util; /**
  * lsy create in 2021/05/04/12:45
  */
 import java.io.IOException;
@@ -10,7 +10,7 @@ import java.util.Properties;
  * <p>
  * 数据库连接工具类，可实现数据库一键连接，一键关闭流
  */
-public class Util {
+public class DButil {
 
     private String path = "";
     private String username = "";
@@ -23,11 +23,11 @@ public class Util {
     /**
      * 构造方法，在new对象的时候读取配置文件中的数据库连接信息，创建连接
      */
-    public Util() {
+    public DButil() {
         Properties properties = new Properties();
         try {
 //            加载配置文件
-            properties.load(this.getClass().getResourceAsStream("/ConnectionConfig.properties"));//线上
+            properties.load(this.getClass().getResourceAsStream("/dbConnectionConfig.properties"));//线上
             this.path = properties.getProperty("path");
             this.username = properties.getProperty("username");
             this.password = properties.getProperty("password");

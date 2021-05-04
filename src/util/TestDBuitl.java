@@ -1,3 +1,5 @@
+package util;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -5,9 +7,9 @@ import java.sql.SQLException;
 /**
  * lsy create in 2021/05/04/12:52
  */
-public class TestUitl {
+public class TestDBuitl {
     public static void main(String[] args){
-        Util uitl = new Util();
+        DButil uitl = new DButil();
         String sql = "select * from users";
         PreparedStatement ps = uitl.getPs(sql);
         ResultSet rs = null;
