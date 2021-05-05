@@ -75,7 +75,7 @@ public class adduser extends JFrame {
                         String username = textField2.getText();
                         String password = textField3.getText();
                         DButil dButil = new DButil();
-                        String sql = "insert into users values("+id+",'"+username+"','"+password+"');";
+                        String sql = "insert into users values('"+id+"','"+username+"','"+password+"');";
                         System.out.println(sql);
                         PreparedStatement ps = dButil.getPs(sql);
                         setVisible(false);

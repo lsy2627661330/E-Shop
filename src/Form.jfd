@@ -50,7 +50,7 @@ new FormModel {
 				name: "button2"
 				"text": "退出"
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"x": 505
+				"x": 500
 				"y": 335
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
@@ -86,6 +86,24 @@ new FormModel {
 				"x": 385
 				"y": 335
 			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label5"
+				"text": "商品信息"
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 17, false )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 225
+				"y": 20
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane2"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "table2"
+				} )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 60
+				"y": 85
+				"height": 215
+			} )
 			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
 				name: "menuBar1"
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
@@ -110,7 +128,7 @@ new FormModel {
 				} )
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 					name: "menu2"
-					"text": "商品管理"
+					"text": "库存管理"
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "menuItem4"
 						"text": "查看库存"
@@ -121,6 +139,10 @@ new FormModel {
 					} )
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "menuItem6"
+						"text": "修改商品"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem11"
 						"text": "删除商品"
 					} )
 				} )

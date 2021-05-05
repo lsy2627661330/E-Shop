@@ -2,15 +2,15 @@
  * lsy create in 2021/05/03/15:59
  */
 public class Users {
-    private  int id;
+    private  String id;
     private  String username;
     private  String password;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

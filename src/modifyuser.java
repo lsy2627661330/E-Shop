@@ -79,7 +79,7 @@ public class modifyuser extends JFrame {
                         String username = textField2.getText();
                         String password = textField3.getText();
                         DButil dButil = new DButil();
-                        String sql = "update users set username = '"+username+"', password= '"+password+"' where id= "+id+";";
+                        String sql = "update users set username = '"+username+"', password= '"+password+"' where id= '"+id+"';";
                         System.out.println(sql);
                         PreparedStatement ps = dButil.getPs(sql);
                         setVisible(false);
@@ -94,7 +94,6 @@ public class modifyuser extends JFrame {
                 }
         );
         setVisible(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
