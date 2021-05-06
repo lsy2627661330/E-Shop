@@ -51,5 +51,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="mysql-connector-java-8.0.19" level="project" />
     <orderEntry type="library" name="commons-codec-1.15" level="project" />
+    <orderEntry type="library" name="alipay-sdk-java-3.3.0-source" level="project" />
   </component>
 </module>

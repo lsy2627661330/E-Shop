@@ -1,3 +1,5 @@
+package user;
+
 import util.DButil;
 
 import javax.swing.*;
@@ -7,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 /*
- * Created by JFormDesigner on Tue May 04 20:06:36 CST 2021
+ * Created by JFormDesigner on Tue May 04 17:18:21 CST 2021
  */
 
 
@@ -15,13 +17,13 @@ import java.sql.SQLException;
 /**
  * @author 1
  */
-public class modifyuser extends JFrame {
-    public modifyuser() {
+public class adduser extends JFrame {
+    public adduser() {
         initComponents();
     }
 
     public static void main(String[] args) {
-        new modifyuser();
+        new adduser();
     }
 
     private void initComponents() {
@@ -35,42 +37,38 @@ public class modifyuser extends JFrame {
         button1 = new JButton();
 
         //======== this ========
+        setFont(new Font(Font.DIALOG, Font.PLAIN, 10));
         var contentPane = getContentPane();
         contentPane.setLayout(null);
 
         //---- label1 ----
-        label1.setText("id\uff1a");
-        label1.setFont(label1.getFont().deriveFont(label1.getFont().getSize() + 10f));
+        label1.setText("ID\uff1a");
+        label1.setFont(label1.getFont().deriveFont(label1.getFont().getSize() + 12f));
         contentPane.add(label1);
-        label1.setBounds(new Rectangle(new Point(45, 45), label1.getPreferredSize()));
+        label1.setBounds(new Rectangle(new Point(35, 60), label1.getPreferredSize()));
 
         //---- label2 ----
         label2.setText("\u7528\u6237\u540d\uff1a");
-        label2.setFont(label2.getFont().deriveFont(label2.getFont().getSize() + 10f));
+        label2.setFont(label2.getFont().deriveFont(label2.getFont().getSize() + 12f));
         contentPane.add(label2);
-        label2.setBounds(new Rectangle(new Point(25, 90), label2.getPreferredSize()));
+        label2.setBounds(new Rectangle(new Point(35, 95), label2.getPreferredSize()));
 
         //---- label3 ----
         label3.setText("\u5bc6\u7801\uff1a");
-        label3.setFont(label3.getFont().deriveFont(label3.getFont().getSize() + 10f));
+        label3.setFont(label3.getFont().deriveFont(label3.getFont().getSize() + 12f));
         contentPane.add(label3);
-        label3.setBounds(new Rectangle(new Point(40, 135), label3.getPreferredSize()));
+        label3.setBounds(new Rectangle(new Point(35, 130), label3.getPreferredSize()));
         contentPane.add(textField1);
-        textField1.setBounds(135, 45, 100, 26);
+        textField1.setBounds(130, 65, 100, 25);
         contentPane.add(textField2);
-        textField2.setBounds(135, 90, 100, 26);
+        textField2.setBounds(130, 100, 100, 25);
         contentPane.add(textField3);
-        textField3.setBounds(135, 135, 100, 26);
+        textField3.setBounds(130, 135, 100, 25);
 
         //---- button1 ----
-        button1.setText("\u4fee\u6539");
+        button1.setText("\u6dfb\u52a0");
         contentPane.add(button1);
-        button1.setBounds(145, 195, 60, 30);
-
-        contentPane.setPreferredSize(new Dimension(340, 300));
-        pack();
-        setLocationRelativeTo(getOwner());
-        // JFormDesigner - End of component initialization  //GEN-END:initComponents
+        button1.setBounds(150, 190, 65, 30);
         button1.addActionListener(
                 new ActionListener() {
                     @Override
@@ -79,7 +77,7 @@ public class modifyuser extends JFrame {
                         String username = textField2.getText();
                         String password = textField3.getText();
                         DButil dButil = new DButil();
-                        String sql = "update users set username = '"+username+"', password= '"+password+"' where id= '"+id+"';";
+                        String sql = "insert into users values('"+id+"','"+username+"','"+password+"');";
                         System.out.println(sql);
                         PreparedStatement ps = dButil.getPs(sql);
                         setVisible(false);
@@ -93,7 +91,11 @@ public class modifyuser extends JFrame {
                     }
                 }
         );
-        setVisible(true);
+
+        contentPane.setPreferredSize(new Dimension(355, 300));
+        pack();
+        setLocationRelativeTo(getOwner());
+        // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables

@@ -1,3 +1,5 @@
+package product;
+
 /**
  * lsy create in 2021/05/05/13:54
  */

@@ -1,4 +1,4 @@
-/*
+package product;/*
  * Created by JFormDesigner on Wed May 05 15:20:12 CST 2021
  */
 
